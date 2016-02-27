@@ -81,7 +81,7 @@ st=st+"</br>"+g[key][ Math.floor( Math.random() * g[key].length ) ] ;
 //    console.log(arr_jq_TabContents[g]);
 }
 console.log(st);
-$( "pre.a" )
+$( "div.a" )
   .html( st );
 //   $( "#myDiv" ).show();
 state=1;
@@ -102,7 +102,8 @@ function sp2()
 timer=Math.random()*10+10; //FIXME: some gauss would be nice
 console.log(timer);
 //$.mbAudio.play('backgroundSprite',"intro");
-if (n==0) { $.mbAudio.play('backgroundSprite',"alarm"); n=1; } //workaround for android firefox, hogy az első indításnál is szóljon az alarm.
+var isAndroid = /(android)/i.test(navigator.userAgent);
+if (isAndroid && n==0) { $.mbAudio.play('backgroundSprite',"alarm"); n=1; } //workaround for android firefox, hogy az első indításnál is szóljon az alarm.
 $.mbAudio.play('effectSprite',"intro");
 
 }
@@ -137,7 +138,8 @@ console.log(timer);
 }
 
 </script>
-<pre class="a">
-Rázd meg a telefonod, vagy nyomj egy szóközt, hogy elinduljon a játék. Találj egy helyes megfejtést, mielőtt lejár az óra!
-</pre>
+
+<div class="a" style="font-size: 60px" >
+Rázd meg a telefonod, vagy nyomj egy szóközt, hogy elinduljon a játék. Találj egy helyes megfejtést, mielőtt lejár az óra!Tesztelve desktop chrome-mal és android firefox-szal.
+</div>
 
