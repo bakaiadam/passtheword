@@ -1,0 +1,143 @@
+<head>
+<meta charset="UTF-8">
+</head>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="jquery.mb.audio.js"></script>
+<script type="text/javascript" src="shake.js"></script>
+<script type="text/javascript" src="script2"></script>
+<script type="text/javascript">
+//TODO: shake logic
+
+window.onload = function() {
+    //create a new instance of shake.js.
+    var myShakeEvent = new Shake({
+        threshold: 4
+    });
+
+    // start listening to device motion
+    myShakeEvent.start();
+
+    // register a shake event
+    window.addEventListener('shake', spacepressed, false);
+//$.mbAudio.play('backgroundSprite',"alarm");
+//$.mbAudio.pause('backgroundSprite');
+};
+
+ $.mbAudio.sounds = {
+
+            backgroundSprite: {
+                id: "backgroundSprite",
+                ogg: "sounds/bgndsSprite.ogg",
+                mp3: "alarm-clock-01.mp3",
+                //example of sprite
+                sprite:{
+                    intro     : {id: "intro", start: 0.5, end: 5.5, loop: true},
+                    alarm: {id: "alarm", start: 5.5, end: 8, loop: false},
+                    tick: {id: "tick", start: 1.0, end: 2.0, loop: false},
+                    level1    : {id: "level1", start: 5, end: 13, loop: true},
+                    level2    : {id: "level2", start: 40, end: 56, loop: true},
+                    level3    : {id: "level3", start: 120, end: 136.030, loop: true}
+                }
+            },
+
+            effectSprite: {
+                id: "effectSprite",
+                ogg: "sounds/effectsSprite.ogg",
+                mp3: "clock-ticking-2.mp3",
+                //example of sprite
+                sprite:{
+                    intro: {id: "intro", start: 1.5, end: 2.5, loop: true},
+                    great : {id: "great", start: 8, end: 9, loop: false},
+                    tick : {id: "tick", start: 1.0, end: 1.1, loop: false},
+                    wow   : {id: "wow", start: 15, end: 20, loop: false},
+                    levelIntro    : {id: "levelIntro", start: 20, end: 25, loop: false},
+                    levelCompleted: {id: "levelCompleted", start: 25, end: 30, loop: false},
+                    subLevelLost: {id: "subLevelLost", start: 35, end: 38.1, loop: false},
+                    subLevelWon : {id: "subLevelWon", start: 30, end: 31.9, loop: false},
+                    gameWon : {id: "gameWon", start: 30, end: 31.9, loop: false}
+                }
+            }
+        };
+
+
+
+window.onkeydown = function (e) {
+    if (!e) e = window.event;
+    console.log(e.keyCode);
+    if (e.keyCode==32) spacepressed();
+}
+var timer=0;
+var state=0;
+//var g={"betü":["a","b"],"a": ["q","w"] };
+
+function spacepressed()
+{
+if (state==0)
+{
+var st="";
+for (var key in g) {
+console.log(g[key]);
+st=st+"</br>"+g[key][ Math.floor( Math.random() * g[key].length ) ] ;
+//    console.log(arr_jq_TabContents[g]);
+}
+console.log(st);
+$( "pre.a" )
+  .html( st );
+//   $( "#myDiv" ).show();
+state=1;
+console.log("spacepressed");
+spacepressed();
+}
+else
+{
+state=0;
+sp2();
+}
+
+}
+
+ var n=0;
+function sp2()
+{
+timer=Math.random()*10+10; //FIXME: some gauss would be nice
+console.log(timer);
+//$.mbAudio.play('backgroundSprite',"intro");
+if (n==0) { $.mbAudio.play('backgroundSprite',"alarm"); n=1; } //workaround for android firefox, hogy az első indításnál is szóljon az alarm.
+$.mbAudio.play('effectSprite',"intro");
+
+}
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+
+setInterval(ticking, 1000);
+function ticking()
+{
+if (timer!=0)
+{
+//$.mbAudio.play('backgroundSprite',"tick");
+timer-=1;
+if (timer<=1) $.mbAudio.pause('effectSprite');
+
+}
+if (timer<0) 
+{
+//sleep(5000);
+$.mbAudio.play('backgroundSprite',"alarm");
+//alert("alarm");
+timer=0;
+}
+
+console.log(timer);
+}
+
+</script>
+<pre class="a">
+Rázd meg a telefonod, vagy nyomj egy szóközt, hogy elinduljon a játék. Találj egy helyes megfejtést, mielőtt lejár az óra!
+</pre>
+
