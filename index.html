@@ -76,8 +76,7 @@ function spacepressed()
 {
 if (state==0)
 {
-timer=0;
-$.mbAudio.pause('effectSprite');
+//timer=0;
 var st="";
 for (var key in g) {
 //console.log(g[key]);
@@ -116,10 +115,21 @@ if ( document.getElementById("vehicle").checked )
 spacepressed();
 }
 else
+if (state==1)
 {
-state=0;
+state=2;
 sp2();
 }
+else
+if (state==2)
+{
+$.mbAudio.pause('effectSprite'); 
+timer=0;
+state=0;
+spacepressed();
+}
+
+
 
 }
 
@@ -144,7 +154,7 @@ if (timer!=0)
 {
 //$.mbAudio.play('backgroundSprite',"tick");
 timer-=1;
-if (timer<=1) $.mbAudio.pause('effectSprite');
+if (timer<=1 ) { $.mbAudio.pause('effectSprite');state=0;}
 
 }
 if (timer<0) 
