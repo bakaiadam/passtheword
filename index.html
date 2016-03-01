@@ -77,12 +77,21 @@ function spacepressed()
 if (state==0)
 {
 timer=0;
+$.mbAudio.pause('effectSprite');
 var st="";
 for (var key in g) {
-console.log(g[key]);
-st=st+"</br>"+g[key][ Math.floor( Math.random() * g[key].length ) ] ;
+//console.log(g[key]);
+//st=st+"</br>"+g[key][ Math.floor( Math.random() * g[key].length ) ] ;
 //    console.log(arr_jq_TabContents[g]);
 }
+st="";
+for (var key of ( Math.random()<0.5?["a","b","pos"]:["b","a","pos"] ) ) {
+console.log(key, g2[key]);
+st=st+"</br>"+g2[key][ Math.floor( Math.random() * g2[key].length ) ] ;
+//    console.log(arr_jq_TabContents[g]);
+}
+
+
 console.log(st);
 //$( "div.a" )
 //  .html( st );

@@ -1,28 +1,32 @@
 var g=
-{"betü:": ["a mint alma",
+{
+"maganh": ["a mint alma",
 "á mint ádám",
+"e mint elemér",
+"é mint éva",
+"i mint ilona",
+"o mint olga",
+"ő mint ödön",
+"u mint ubul",
+"ü mint ürge"
+]
+,
+"massalh": [
 "b mint béla",
 "c mint cica",
 "d mint dániel",
-"e mint elemér",
-"é mint éva",
 "f mint ferenc",
 "g mint géza",
 "h mint hedvig",
-"i mint ilona",
 "j mint jános",
 "k mint károly",
 "l mint lajos",
 "m mint mária",
 "n mint norbert",
-"o mint olga",
-"ő mint ödön",
 "p mint péter",
 "r mint róbert",
 "s mint sándor",
 "t mint tamás",
-"u mint ubul",
-"ü mint ürge",
 "v mint vazul",
 "z mint zoltán" ],
 "pos": [
@@ -42,3 +46,12 @@ var g=
 "híres személy",
 "márka",
 "foglalkozás" ] };
+g["betü"]=g["maganh"].concat(g["massalh"]);
+
+
+var g2=
+{
+"a":g["massalh"],
+"b":g["maganh"],
+"pos":g["pos"]
+};
