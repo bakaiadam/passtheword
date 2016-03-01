@@ -76,6 +76,7 @@ function spacepressed()
 {
 if (state==0)
 {
+timer=0;
 var st="";
 for (var key in g) {
 console.log(g[key]);
@@ -102,6 +103,7 @@ myNode.appendChild(newdiv);
 //   $( "#myDiv" ).show();
 state=1;
 console.log("spacepressed");
+if ( document.getElementById("vehicle").checked )
 spacepressed();
 }
 else
@@ -115,21 +117,15 @@ sp2();
  var n=0;
 function sp2()
 {
-timer=Math.random()*10+10; //FIXME: some gauss would be nice
+var tt=document.getElementById("textField1").value;
+timer=Math.random()*tt+10; //FIXME: some gauss would be nice
+//timer=Math.random()*10+10; //FIXME: some gauss would be nice
 console.log(timer);
 //$.mbAudio.play('backgroundSprite',"intro");
 var isAndroid = /(android)/i.test(navigator.userAgent);
 if (isAndroid && n==0) { $.mbAudio.play('backgroundSprite',"alarm"); n=1; } //workaround for android firefox, hogy az első indításnál is szóljon az alarm.
 $.mbAudio.play('effectSprite',"intro");
 
-}
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
 }
 
 setInterval(ticking, 1000);
@@ -158,4 +154,7 @@ console.log(timer);
 <div class="a" style="font-size: 60px" >
 Rázd meg a telefonod, vagy nyomj egy szóközt, hogy elinduljon a játék. Találj egy helyes megfejtést, mielőtt lejár az óra!Tesztelve desktop chrome-mal és android firefox-szal.
 </div>
+
+<input id="textField1" type="text" size="13" value="20" /><br>
+<input type="checkbox" id="vehicle" value="Bike">egyszerrázós<br>
 </h1>
